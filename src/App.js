@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from './components/Home';
+import Gallery2 from './components/Gallery';
+import PhotoDetail from './components/PhotoDetail';
+import './CSS/Navbar.css';
+import './CSS/style.css';
 
-function App() {
+const Navbar = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <nav className="navbar-container">
+      <div>
+        <h3>MSVAV's Click's</h3>
+      </div>
+      <ul className="nav-links">
+        <li>
+          <Link to="/"> Home </Link>
+        </li>
+        <li>
+          <Link to="/gallery"> Gallery </Link>
+        </li>
+      </ul>
+    </nav>
   );
-}
+};
+
+const App = () => {
+  return (
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/gallery" element={<Gallery2 />} />
+          <Route path="/photo/:id" element={<PhotoDetail />} />
+        </Routes>
+        <footer>
+          <div className='footer'>
+            <p>© 2025 MSVAV's Click's</p>
+          </div>
+        </footer>
+      </div>
+    </Router>
+  );
+};
 
 export default App;
